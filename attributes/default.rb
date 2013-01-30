@@ -41,11 +41,11 @@ default["monit"]["mail"] = {
   :timeout  => 30
 }
 
-case node["platform"]
-when platform_family?("rhel"), platform_family?("fedora"), platform_family?("suse")
+case node[:platform]
+when "centos", "redhat", "fedora", "suse"
   default["monit"]["main_config_path"] = "/etc/monit.conf"
   default["monit"]["includes_dir"]     = "/etc/monit.d"
-else
+when "debian", "ubuntu"
   default["monit"]["main_config_path"] = "/etc/monit/monitrc"
   default["monit"]["includes_dir"]     = "/etc/monit/conf.d"
 end
